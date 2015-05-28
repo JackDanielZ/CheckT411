@@ -1,0 +1,26 @@
+Goal: download torrents meta-files according to patterns given by the user.
+
+This tool can be used to download automatically files by copying the torrent file into a specific directory that could be scanned by a bittorrent client
+
+A config.lua file is needed to store the user configuration. Following an example:
+
+-- Authentication in T411 website
+username = "my_t411_username"
+password = "my_t411_password"
+
+-- Path to the directory where to store the .torrent files.
+-- If not specified or nil, will be set to the current directory
+download_dir = "/home/user/Downloads/Torrents"
+
+-- Patterns to determine which torrents to consider
+patterns = {
+   {
+      pattern = "Revenge", -- target name begins with Revenge
+      min_size = 300,      -- minimum size of the target is 300M
+      max_size = 400       -- maximum size of the target is 400M
+   },
+   {
+      pattern = "Turn.*SUBFRENCH" -- regex can be used to describe the target name
+   }
+}
+
