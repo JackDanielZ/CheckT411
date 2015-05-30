@@ -5,6 +5,8 @@ local io = require("io")
 
 dofile("config.lua")
 
+if (show_info == true) then print (os.date ("%x %X")) end
+
 if (download_dir == nil) then download_dir = "." end
 
 local file = io.open("history", "r")
@@ -33,7 +35,6 @@ for i, v in pairs(patterns) do
       if ((v.min_size == nil or nsize >= v.min_size) and
          (v.max_size == nil or nsize <= v.max_size)) then
          if (string.find(history, id)) then
-            print (id.." already handled")
          else
             local file = ltn12.sink.file(io.open(download_dir.."/"..id..".torrent", 'w'))
             http.request{url = baseUrl.."/torrents/download/"..id, sink=file, headers = { ["Authorization"] = token }}

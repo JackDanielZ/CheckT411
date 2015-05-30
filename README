@@ -12,6 +12,10 @@ password = "my_t411_password"
 -- If not specified or nil, will be set to the current directory
 download_dir = "/home/user/Downloads/Torrents"
 
+-- Flag to print info (e.g date) on the screen
+-- Useful for scripts logs
+show_info = true
+
 -- Patterns to determine which torrents to consider
 patterns = {
    {
