@@ -28,7 +28,7 @@ for i, v in pairs(today_json_table) do today_json = today_json..v end
 
 for i, v in pairs(patterns) do
    torrent_name = v.pattern
-   torrent_lines = string.gmatch(today_json, '{("id":"%d+","name":"'..torrent_name..'[^"]*",[^}]+)}')
+   torrent_lines = string.gmatch(today_json, '{("id":"%d+","name":" *'..torrent_name..'[^"]*",[^}]+)}')
    for torrent_line in torrent_lines do
       _, _, id, name, size = string.find(torrent_line, '"id":"(%d+)","name":"([^"]+)".*"size":"(%d+)"')
       nsize = size / (1024 * 1024)
