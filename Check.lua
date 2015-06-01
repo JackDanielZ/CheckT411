@@ -31,7 +31,7 @@ for i, v in pairs(patterns) do
    torrent_lines = string.gmatch(today_json, '{("id":"%d+","name":"'..torrent_name..'[^"]*",[^}]+)}')
    for torrent_line in torrent_lines do
       _, _, id, name, size = string.find(torrent_line, '"id":"(%d+)","name":"([^"]+)".*"size":"(%d+)"')
-      nsize = size / 1000000
+      nsize = size / (1024 * 1024)
       if ((v.min_size == nil or nsize >= v.min_size) and
          (v.max_size == nil or nsize <= v.max_size)) then
          if (string.find(history, id)) then
