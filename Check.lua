@@ -32,7 +32,7 @@ for i, v in pairs(patterns) do
    for torrent_line in torrent_lines do
       _, _, id, name, size = string.find(torrent_line, '"id":"(%d+)","name":"([^"]+)".*"size":"(%d+)"')
       nsize = size / (1024 * 1024)
-      if ((v.min_size == nil or nsize >= v.min_size) and
+      if ((nsize ~= 0) and (v.min_size == nil or nsize >= v.min_size) and
          (v.max_size == nil or nsize <= v.max_size)) then
          if (string.find(history, id)) then
          else
