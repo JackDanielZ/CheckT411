@@ -16,7 +16,7 @@ if (file ~= nil) then
 end
 if history == nil then history = "" end
 
-local baseUrl = 'http://api.t411.io'
+local baseUrl = 'http://api.t411.in'
 
 local http_res = http.request(baseUrl.."/auth", "username="..username.."&password="..password)
 _, _, uid, token = string.find(http_res, '"uid":"(%d+)","token":"([^"]+)"')
