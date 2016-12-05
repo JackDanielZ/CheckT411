@@ -19,6 +19,7 @@ if history == nil then history = "" end
 local baseUrl = 'http://api.t411.li'
 
 local http_res = http.request(baseUrl.."/auth", "username="..username.."&password="..password)
+if (http_res == nil) then return 1 end
 _, _, uid, token = string.find(http_res, '"uid":"(%d+)","token":"([^"]+)"')
 
 local today_json_table = {}
