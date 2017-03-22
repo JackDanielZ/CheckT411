@@ -5,6 +5,14 @@ local io = require("io")
 
 dofile("config.lua")
 
+function fsize (filename)
+	local file = io.open(filename, "r")
+	local current = file:seek()      -- get current position
+	local size = file:seek("end")    -- get file size
+	file:seek("set", current)        -- restore position
+	return size
+end
+
 if (show_info == true) then print (os.date ("%x %X")) end
 
 if (download_dir == nil) then download_dir = "." end
@@ -39,8 +47,10 @@ for i, v in pairs(patterns) do
          else
             local file = ltn12.sink.file(io.open(download_dir.."/"..id..".torrent", 'w'))
             http.request{url = baseUrl.."/torrents/download/"..id, sink=file, headers = { ["Authorization"] = token }}
-            print(torrent_line, id, size)
-            history = history..id..": "..name.."\n"
+	    if (fsize(download_dir.."/"..id..".torrent") > 1024) then
+	       print(torrent_line, id, size)
+	       history = history..id..": "..name.."\n"
+	    end
          end
       end
    end
