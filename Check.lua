@@ -1,5 +1,5 @@
 -- Packages needed: lua-socket
-local http = require("socket.http")
+local http = require("ssl.https")
 local ltn12 = require("ltn12")
 local io = require("io")
 
@@ -24,7 +24,7 @@ if (file ~= nil) then
 end
 if history == nil then history = "" end
 
-local baseUrl = 'http://api.t411.ai'
+local baseUrl = 'https://api.t411.ai'
 
 local http_res = http.request(baseUrl.."/auth", "username="..username.."&password="..password)
 if (http_res == nil) then return 1 end
